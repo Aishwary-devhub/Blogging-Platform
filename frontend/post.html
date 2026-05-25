@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>Blog Post</title>
+
+<link rel="preconnect"
+href="https://fonts.googleapis.com">
+
+<link rel="preconnect"
+href="https://fonts.gstatic.com"
+crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap"
+rel="stylesheet">
+
+<link rel="stylesheet"
+href="style.css">
+
+</head>
+
+<body>
+
+<header>
+
+<div class="logo">
+BlogHub ✨
+</div>
+
+<nav>
+
+<a href="index.html">
+
+← Back Home
+
+</a>
+
+</nav>
+
+</header>
+
+<div class="container">
+
+<div class="card create-card">
+
+<h1 id="post-title">
+
+Loading...
+
+</h1>
+
+<br>
+
+<p id="post-content">
+
+Loading content...
+
+</p>
+
+</div>
+
+</div>
+
+<script>
+
+const API_URL =
+"http://localhost:5000/posts";
+
+const params =
+new URLSearchParams(
+window.location.search
+);
+
+const id =
+params.get("id");
+
+async function loadPost(){
+
+const response =
+await fetch(
+
+`${API_URL}/${id}`
+
+);
+
+const post =
+await response.json();
+
+document
+.getElementById(
+"post-title"
+).innerText = post.title;
+
+document
+.getElementById(
+"post-content"
+).innerText =
+post.content;
+
+}
+
+loadPost();
+
+</script>
+
+</body>
+</html>
