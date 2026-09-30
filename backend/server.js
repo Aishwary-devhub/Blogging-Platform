@@ -1,4 +1,5 @@
 const express = require("express");
+const path = require("path");
 const mongoose = require("mongoose");
 const cors = require("cors");
 require("dotenv").config();
@@ -9,6 +10,7 @@ const app = express();
 
 app.use(cors());
 app.use(express.json());
+app.use(express.static(path.join(__dirname, "../frontend")));
 
 mongoose
   .connect(process.env.MONGO_URI)
@@ -16,7 +18,7 @@ mongoose
   .catch((err) => console.log(err));
 
 app.get("/", (req, res) => {
-  res.send("Blog API Running...");
+  res.sendFile(path.join(__dirname, "../frontend/index.html"));
 });
 
 // GET all posts

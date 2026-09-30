@@ -1,7 +1,10 @@
-const API_URL = "http://localhost:5000/posts";
+const API_URL =
+  window.location.hostname === "localhost" ||
+  window.location.hostname === "127.0.0.1"
+    ? "http://localhost:5000/posts"
+    : "/posts";
 
-const params =
-new URLSearchParams(window.location.search);
+const params =new URLSearchParams(window.location.search);
 
 const id = params.get("id");
 
